@@ -5,6 +5,7 @@ const image = document.getElementById("qr-image");
 
 // Click event listener on Button
 button.addEventListener('click', function () {
+
     // Get url from input
     const inputValue = input.value;
 
@@ -13,6 +14,7 @@ button.addEventListener('click', function () {
         alert("Please enter URL");
         return;
     }
+
     // Generate QR Code
     else {
         image.setAttribute("style", "display: block")
