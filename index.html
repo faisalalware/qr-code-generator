@@ -17,15 +17,27 @@
     <div class="container">
         <div class="wrapper d-flex flex-column justify-content-center align-items-center">
             <h3 class="mb-5">QR Code Generator</h3>
-            <input type="text" class="form-control mb-5" id="qr-input" placeholder="Paste your URL here"
+            <input type="text" class="form-control mb-3" id="qr-input" placeholder="Paste your URL here"
                 autocomplete="off">
-            <button class="btn btn-primary mb-5" id="qr-btn">Generate</button>
-            <img src="" alt="" id="qr-image" style="display: none;" />
+            <select class="form-select mb-5" id="qr-sizes" autocomplete="off">
+                <option value="" selected disabled>choose size for QR code</option>
+                <option value="100">Extra Small (100x100)</option>
+                <option value="150">Small (150x150)</option>
+                <option value="200">Medium (200x200)</option>
+                <option value="225">Large (225x225)</option>
+                <option value="250">Extra Large (250x250)</option>
+            </select>
+            <button class="btn btn-primary" id="generate-btn">Generate</button>
+            <div id="qr-body"></div>
+            <a class="btn btn-primary" id="download-btn" download="QR_Code.png">Download</a>
         </div>
     </div>
 
     <!-- Main JS File -->
     <script src="main.js"></script>
+
+    <!-- QR Code JS File -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <!-- Bootstrap JS Files -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

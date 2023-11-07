@@ -1,24 +1,57 @@
 // Get elements from document
 const input = document.getElementById("qr-input");
-const button = document.getElementById("qr-btn");
-const image = document.getElementById("qr-image");
+const size = document.getElementById("qr-sizes");
+const generateButton = document.getElementById("generate-btn");
+const container = document.getElementById("qr-body");
+const downloadButton = document.getElementById("download-btn");
 
-// Click event listener on Button
-button.addEventListener('click', function () {
+// Click event listener on generate button
+generateButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    generateQRCode();
+})
 
-    // Get url from input
-    const inputValue = input.value;
+// Click event listener on download button
+downloadButton.addEventListener('click', () => {
+    downloadQRCode();
+})
 
-    // Check if input is empty
-    if (!inputValue) {
+// Function to generate QR code
+function generateQRCode() {
+    if (!input.value) {
         alert("Please enter URL");
         return;
     }
-
-    // Generate QR Code
-    else {
-        image.setAttribute("style", "display: block")
-        image.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inputValue}`;
+    else if (!size.value) {
+        alert("Please select size");
+        return;
     }
-});
+    else {
+        container.innerHTML = "";
+        new QRCode(container, {
+            text: input.value,
+            width: size.value,
+            height: size.value,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+        });
+        generateButton.setAttribute('style', 'margin-bottom: 30px');
+        container.setAttribute('style', 'margin-bottom: 30px');
+        downloadButton.setAttribute('style', 'display:block');
+    }
+}
+
+// Function to download QR Code
+function downloadQRCode() {
+    let img = document.querySelector('.qr-body img');
+
+    if (img !== null) {
+        let imgAtrr = img.getAttribute('src');
+        downloadButton.setAttribute("href", imgAtrr);
+    }
+    else {
+        downloadButton.setAttribute("href", `${document.querySelector('canvas').toDataURL()}`);
+    }
+}
+
 
