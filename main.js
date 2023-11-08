@@ -36,8 +36,8 @@ function generateQRCode() {
             colorLight: "#ffffff",
         });
         generateButton.setAttribute('style', 'margin-bottom: 30px');
-        container.setAttribute('style', 'margin-bottom: 30px');
-        downloadButton.setAttribute('style', 'display:block');
+        container.setAttribute('style', 'display: block');
+        downloadButton.setAttribute('style', 'display: block');
     }
 }
 
